@@ -1,0 +1,74 @@
+target/
+.mvn/
+mvnw
+typings/**
+node_modules
+jspm_packages
+link-checker-results.txt
+**/*npm-debug.log.*
+*.js
+*.js.map
+_test-output
+_temp
+*.cmd
+!init.js
+!systemjs.config.js
+!src/main/webapp/app/mycontact/test.js
+##!typings/lodash/lodash.d.ts
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
