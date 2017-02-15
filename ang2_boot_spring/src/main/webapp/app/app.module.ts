@@ -10,13 +10,16 @@ import { MycontactComponent }      from './mycontact/mycontact.component';
 import { WebsocketComponent }      from './websocket_app/websocket.component';
 import { HeroService }          from './hero.service';
 
+import { CryptoProModule }      from './crypto_pro/crypto_pro.module';
+
 import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CryptoProModule
   ],
   declarations: [
     AppComponent,

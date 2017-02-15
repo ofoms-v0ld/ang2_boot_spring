@@ -14,6 +14,7 @@ _temp
 !init.js
 !systemjs.config.js
 !src/main/webapp/app/mycontact/test.js
+!src/main/webapp/app/crypto_pro/sources/*.*
 ##!typings/lodash/lodash.d.ts
 
 ### STS ###

@@ -1,0 +1,124 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	
+</head>
+<body>
+    <div id="min-width">
+        <div id="container">
+            <table>
+                <tr>
+                    <td>
+                        <div id="header">
+                            <a href="/" title="Главная">
+                            <img src="app/crypto_pro/sources/key.png" alt="Главная" class="logo" /></a>
+                            <h1>Электронной подписи CAdES-BES</h1>
+                            <div id="promo"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mainContent">
+                            <div id="left-col">
+                                <div id="info">
+                                    <img id="info_img" src="app/crypto_pro/sources/application_information.png" alt="" />
+                                    <div id="info_msg" style="text-align:center;">
+                                        <span id="PlugInEnabledTxt">Плагин не загружен</span>
+                                        <img src="app/crypto_pro/sources/red_dot.png" width="10" height="10" alt="Плагин не загружен" id="PluginEnabledImg"/>
+                                        <br>
+                                        <span id="PlugInVersionTxt" lang="ru"> </span>
+                                        <span id="CSPVersionTxt" lang="ru"> </span>
+                                        <br>
+                                        <span id="CSPNameTxt" lang="ru"> </span>
+                                    </div>
+                                </div>
+                                <p id="info_msg" name="CertificateTitle">Сертификат:</p>
+                                <div id="item_border" name="CertListBoxToHide">
+                                    <select size="4" name="CertListBox" id="CertListBox" style="width:100%;resize:none;border:0;">
+                                    </select>             
+                                </div>
+
+                                <div id="cert_info" style="display:none">
+                                    <h2>Информация о сертификате</h2>
+                                        <p class="info_field" id="subject"></p>
+                                        <p class="info_field" id="issuer"></p>
+                                        <p class="info_field" id="from"></p>
+                                        <p class="info_field" id="till"></p>
+                                        <p class="info_field" id="provname"></p>
+                                        <p class="info_field" id="algorithm"></p>
+                                </div>
+
+                                <p id="info_msg">Загрузить файл:</p>
+                                <div id="item_border">
+                                    <input id="openFileButton" type='file' style="width:100%">
+                                </div>
+								<table>
+									<tr>
+										<td>
+											Совмещенная подпись Cades-bes:
+										</td>		
+										<td>
+											<input type='button' value='Подписать' id="sing_cadebes_sov"/>
+										</td>
+										<td>
+											<div id="bigtet"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Раздельная подпись Cades-bes:
+										</td>		
+										<td>
+											<input type='button' value='Подписать' id="sing_cadebes_raz"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										-------------------------------
+										</td>		
+										<td>
+										-------------------------------
+										</td>
+									</tr>
+									<tr>
+										<td>
+										Снять и проверить совмещенную подпись Cades-bes: 
+										</td>		
+										<td>
+										<input type="button" value="Проверить" id="check_and_getfile"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										Проверить совмещенную подпись Cades-bes: 
+										</td>		
+										<td>
+										<input type="button" value="Проверить" id="check_sovsing"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										Проверить раздельную подпись Cades-bes: 
+										</td>		
+										<td>
+										<input type="button" value="Проверить" id="check_razsing"/>
+										</td>
+									</tr>
+								</table>
+                                <p id="info_msg" name="SignatureTitle">Подпись:</p>
+                                <div id="item_border">
+                                    <textarea id="SignatureTxtBox" style="font-size:9pt;height:600px;width:100%;resize:none;border:0;">
+                                    </textarea>
+                                </div>
+                                <p></p>
+                                <p id="info_msg" name ="TimeTitle">Время выполнения: </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
