@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CryptoProComponent }    from './cryptopro.component';
+import { CryptoProComponent}    from './cryptopro.component';
 import { CryptoProDetailComponent }  from './CryptoPro-detail.component';
 
 

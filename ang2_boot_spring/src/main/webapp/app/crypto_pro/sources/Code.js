@@ -1,5 +1,6 @@
 var isPluginEnabled = false;
 var fileContent; // Переменная для хранения информации из файла, значение присваивается в cades_bes_file.html
+var fileName;
 function getXmlHttp(){
     var xmlhttp;
     try {

@@ -36,7 +36,8 @@ openFileButton.onchange =  function (event) {
         var header = ";base64,";
         var fileData = reader.result;
         fileContent = fileData.substr(fileData.indexOf(header) + header.length);
-        alert(fileContent);
+        fileName =input.files[0].name;
+        //alert(input.files[0]);
     };
 };
 

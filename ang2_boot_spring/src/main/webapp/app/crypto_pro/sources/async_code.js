@@ -733,9 +733,11 @@ function SignCadesBES_Async_File(certListBoxId) {
                     throw errormes;
                 }
             }
-            create_addFile_inDOM(Signature);
+            
             document.getElementById("SignatureTxtBox").innerHTML = Signature;
             SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
+            
+            addFile_cadesSov_server(Signature,fileName)
         }
         catch(err)
         {
@@ -744,6 +746,32 @@ function SignCadesBES_Async_File(certListBoxId) {
         }
     }, certListBoxId); //cadesplugin.async_spawn
     }
+
+function addFile_cadesSov_server(sinnature,name){
+	alert(name)
+	var body = 'cades_bes_sov=' + sinnature;
+	var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/uploadFile2', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.send(body);
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+        //button.innerHTML = 'Готово!';
+
+        if (xhr.status != 200) {
+          // обработать ошибку
+          alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+          // вывести результат
+          alert('OK '+xhr.responseText);
+        }
+      }
+};
+
+
 
 
 function create_addFile_inDOM(sinnature){
