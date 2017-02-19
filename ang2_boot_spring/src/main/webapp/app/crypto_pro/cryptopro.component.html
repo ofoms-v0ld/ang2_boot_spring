@@ -1,7 +1,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	
 </head>
 <body>
     <div id="min-width">
@@ -62,7 +61,7 @@
 											<input type='button' value='Подписать' id="sing_cadebes_sov"/>
 										</td>
 										<td>
-											<div id="bigtet"></div>
+											<div id="div_href_signed_sov" style="display:none;"><a href="" id="href_signed_sov"></a></div>
 										</td>
 									</tr>
 									<tr>
@@ -71,6 +70,34 @@
 										</td>		
 										<td>
 											<input type='button' value='Подписать' id="sing_cadebes_raz"/>
+										</td>
+										<td>
+											<div id="div_href_signed_razdPOD" style="display:none;"><a href="" id="href_signed_razdPOD"></a></div>
+										</td>
+										<td>
+											<div id="div_href_signed_razdFILE" style="display:none;"><a href="" id="href_signed_razdFILE"></a></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										-------------------------------
+										</td>		
+										<td>
+										-------------------------------
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Параллельная совмещенная подпись Cades-bes:
+										</td>		
+										<td>
+											<input type='button' value='Подписать' id="sing_cadebes_par_sov"/>
+										</td>
+										<td>
+											<!-- <div id="div_href_signed_razdPOD" style="display:none;"><a href="" id="href_signed_razdPOD"></a></div> -->
+										</td>
+										<td>
+											<!-- <div id="div_href_signed_razdFILE" style="display:none;"><a href="" id="href_signed_razdFILE"></a></div> -->
 										</td>
 									</tr>
 									<tr>
@@ -88,6 +115,11 @@
 										<td>
 										<input type="button" value="Проверить" id="check_and_getfile"/>
 										</td>
+										<td>
+										<div id="SPSPCB_date"></div>
+										<div id="SPSPCB_isvalid"></div>
+										<div id="SPSPCB_owner"></div>
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -96,6 +128,11 @@
 										<td>
 										<input type="button" value="Проверить" id="check_sovsing"/>
 										</td>
+										<td>
+										<div id="PSPCB_date"></div>
+										<div id="PSPCB_isvalid"></div>
+										<div id="PSPCB_owner"></div>
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -103,6 +140,11 @@
 										</td>		
 										<td>
 										<input type="button" value="Проверить" id="check_razsing"/>
+										</td>
+										<td>
+										<div id="PRPCB_date"></div>
+										<div id="PRPCB_isvalid"></div>
+										<div id="PRPCB_owner"></div>
 										</td>
 									</tr>
 								</table>

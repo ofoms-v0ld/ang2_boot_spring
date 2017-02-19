@@ -37,7 +37,7 @@ openFileButton.onchange =  function (event) {
         var fileData = reader.result;
         fileContent = fileData.substr(fileData.indexOf(header) + header.length);
         fileName =input.files[0].name;
-        //alert(input.files[0]);
+        alert(fileContent);
     };
 };
 
@@ -74,6 +74,16 @@ check_razsing.onclick = function () {
     { alert('Выбран пустой файл'); return; }
     	else
 	Verefic_SignCadesBES_File_ot()
+};
+
+sing_cadebes_par_sov.onclick = function () {
+	if ('' == openFileButton.value)
+	{ alert('Файл не выбран.'); return; }
+else
+if ('' == fileContent || undefined == fileContent)
+	{ alert('Выбран пустой файл'); return; }
+else
+SignCadesBES_parallelSovm('CertListBox');
 };
 
 

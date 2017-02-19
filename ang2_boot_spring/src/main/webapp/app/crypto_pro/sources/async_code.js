@@ -414,7 +414,9 @@ function ConvertDate(date) {
             return date;
     }
 }
-
+/*
+ * Метод делает раздельную подпись
+ */
 function SignCadesBES_Async_File_razdelnya(certListBoxId) {
     cadesplugin.async_spawn(function*(arg) {
         var e = document.getElementById(arg[0]);
@@ -516,6 +518,20 @@ function SignCadesBES_Async_File_razdelnya(certListBoxId) {
             }
             document.getElementById("SignatureTxtBox").innerHTML = Signature;
             SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
+            
+            //addFile_cadesSov_server('/uploadFile3',Signature,fileName,fileContent);
+            let pathfile = yield addFile_cadesSov_server('/uploadFile3',Signature,fileName,fileContent);
+            let a = document.getElementById('href_signed_razdFILE');
+            a.text=pathfile.substring(pathfile.indexOf('\\')+2,pathfile.indexOf('","'));
+            a.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+pathfile.substring(pathfile.indexOf('"["')+3,pathfile.indexOf('","'));
+            document.getElementById('div_href_signed_razdFILE').style.display = 'block';
+            
+            let b = document.getElementById('href_signed_razdPOD');
+            let temp =pathfile.substring(pathfile.indexOf('","')+3);
+            b.text=temp.substring(temp.indexOf('\\')+2,temp.indexOf('"]'));
+            b.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+temp.substring(0,temp.indexOf('"]'));
+            document.getElementById('div_href_signed_razdPOD').style.display = 'block';
+            
         }
         catch(err)
         {
@@ -533,13 +549,17 @@ function SignCadesBES_Async_File_veref_razdelnya(){
 	var oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
 	 // Предварительно закодированные в BASE64 бинарные данные
      // В данном случае закодирован вложенный файл
-	 var dataToVerify = fileContent;
+	//	 	var dataToVerify = fileContent;
+	let path_file = document.getElementById("href_signed_razdFILE").href;
+	dataToVerify = yield readbinary('GET',path_file);
+	alert(dataToVerify) 
 	 
 	 // подписанное сообщение
-	 var sSignedMessage = document.getElementById("SignatureTxtBox").value;
+	let path_ecp = document.getElementById("href_signed_razdPOD").href;
+	var sSignedMessage = yield readStringFromFileAtPath('GET',path_ecp);
+	 //var sSignedMessage = document.getElementById("SignatureTxtBox").value;
 	 var oSigner;
 	 var oSignerN;
-	 var oSignerContent;
      try {
          // Значение свойства ContentEncoding должно быть задано
          // до заполнения свойства Content
@@ -548,19 +568,23 @@ function SignCadesBES_Async_File_veref_razdelnya(){
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES, true);
          oSigner = yield oSignedData.Signers;
          oSignerN = yield oSigner.Item(1);
-         oSignerContent = yield oSignedData.Content;
+         
+         var SigningTime = yield oSignerN.SigningTime;
+         var cert = yield oSignerN.Certificate;
+         var owner = yield cert.SubjectName;
+         var serinfvalid = yield cert.IsValid();
+         var IsValid = yield serinfvalid.Result;
+         
+         document.getElementById('PRPCB_date').innerHTML='Дата подписи: '+SigningTime;
+         document.getElementById('PRPCB_isvalid').innerHTML='Действительна: '+IsValid;
+         document.getElementById('PRPCB_owner').innerHTML='Владелец:  '+owner;
 ;
      } catch (err) {
          alert("Failed to verify signature. Error: " + cadesplugin.getLastError(err));
          return false;
      }
 
-     var SigningTime = yield oSignerN.SigningTime;
-     //var SigningTime2 = yield oSignerN.SignatureTimeStampTime;
      
-     alert(SigningTime);
-     //alert(SigningTime2);
-     alert(oSignerN);
      return true;
      
 	});
@@ -568,20 +592,30 @@ function SignCadesBES_Async_File_veref_razdelnya(){
 	
 }
 
+/*
+ * Проверка совмещенной подписи
+ */
+
 function SignCadesBES_Async_File_veref(){
 	var CADESCOM_CADES_BES = 1;
 	cadesplugin.async_spawn(function*(arg) {
 	
 	var oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
 	 
-	 // подписанное сообщение
-	 var sSignedMessage = document.getElementById("SignatureTxtBox").value;
+	 // подписанное сообщение из textarea
+	 //var sSignedMessage = document.getElementById("SignatureTxtBox").value;
+	let path = document.getElementById("href_signed_sov").href;
+	
+	var sSignedMessage = yield readStringFromFileAtPath('GET',path);
+		
 	 var oSigner;
 	 var oSignerN;
 	 var oSignerContent;
+	 var tyty;
      try {
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
          oSigner = yield oSignedData.Signers;
+         var count = oSigner.Count;
          oSignerN = yield oSigner.Item(1);
          //oSignerContent = yield oSignedData.Content;
      } catch (err) {
@@ -596,33 +630,148 @@ function SignCadesBES_Async_File_veref(){
      var owner = yield cert.SubjectName;
      var serinfvalid = yield cert.IsValid();
      var IsValid = yield serinfvalid.Result;
-     //var authenticatedAttributes2_m_list = yield authenticatedAttributes2_m.Item(1);
-     //var authenticatedAttributes2_from_list_Name = yield authenticatedAttributes2_m_list.Name;
-     // bad var authenticatedAttributes2_from_list_Value = yield authenticatedAttributes2_m_list.Value;
      
+     alert(yield cert.SerialNumber);
+     alert(yield cert.Thumbprint);
+     alert(yield cert.ValidFromDate);
+     alert(yield cert.ValidToDate);
+     alert(yield cert.Version);
+     alert(yield cert.IssueName);
 
+     document.getElementById('PSPCB_date').innerHTML='Дата подписи: '+SigningTime;
+     document.getElementById('PSPCB_isvalid').innerHTML='Действительна: '+IsValid;
+     document.getElementById('PSPCB_owner').innerHTML='Владелец:  '+owner;
      
-     alert(SigningTime);
-     alert('Действительна: \n'+IsValid+'\n Владелец: \n'+owner);
+     
      return true;
 	});
 }
 
+/*
+ * Параллелная совмещенная подпись подпись 
+ */
+function Sign_parallelSovm(certListBoxId){
+	var CADESCOM_CADES_BES = 1;
+	cadesplugin.async_spawn(function*(arg) {
+		
+		var e = document.getElementById(arg[0]);
+        var selectedCertID = e.selectedIndex;
+        if (selectedCertID == -1) {
+            alert("Select certificate");
+            return;
+        }
 
+        var thumbprint = e.options[selectedCertID].value.split(" ").reverse().join("").replace(/\s/g, "").toUpperCase();
+        try {
+            var oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+            yield oStore.Open();
+        } catch (err) {
+            alert('Failed to create CAdESCOM.Store: ' + err.number);
+            return;
+        }
+
+        var CAPICOM_CERTIFICATE_FIND_SHA1_HASH = 0;
+        var all_certs = yield oStore.Certificates;
+        var oCerts = yield all_certs.Find(CAPICOM_CERTIFICATE_FIND_SHA1_HASH, thumbprint);
+
+        if ((yield oCerts.Count) == 0) {
+            alert("Certificate not found");
+            return;
+        }
+        var certificate = yield oCerts.Item(1);
+
+
+        var SignatureFieldTitle = document.getElementsByName("SignatureTitle");
+        var Signature;
+        try
+        {
+            FillCertInfo_Async(certificate);
+            var errormes = "",oSigner;
+            try {
+                oSigner = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPSigner");
+            } catch (err) {
+                errormes = "Failed to create CAdESCOM.CPSigner: " + err.number;
+                throw errormes;
+            }
+            
+            
+            if (oSigner) {
+                yield oSigner.propset_Certificate(certificate);
+            }
+            else {
+                errormes = "Failed to create CAdESCOM.CPSigner";
+                throw errormes;
+            }
+		
+		
+	
+	var oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
+	 
+	 // подписанное сообщение из "выбрать файл"
+	var sSignedMessage = Base64.decode(fileContent);
+		
+	 var oSigner,sSignedMessage1,oSignerN,oSignerContent,tyty;
+     
+         yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
+         sSignedMessage1 = yield  oSignedData.CoSignCades(oSigner, CADESCOM_CADES_BES,0);
+         /*oSigner = yield oSignedData.Signers;
+         var count = oSigner.Count;
+         oSignerN = yield oSigner.Item(1);*/
+         //oSignerContent = yield oSignedData.Content;
+     } catch (err) {
+         alert("Failed to verify signature. Error: " + err);
+         return false;
+     }
+
+     document.getElementById("SignatureTxtBox").innerHTML = sSignedMessage1;
+     SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
+     
+     /*var SigningTime = yield oSignerN.SigningTime;
+     var cert = yield oSignerN.Certificate;
+     var owner = yield cert.SubjectName;
+     var serinfvalid = yield cert.IsValid();
+     var IsValid = yield serinfvalid.Result;
+     
+     alert(yield cert.SerialNumber);
+     alert(yield cert.Thumbprint);
+     alert(yield cert.ValidFromDate);
+     alert(yield cert.ValidToDate);
+     alert(yield cert.Version);
+     alert(yield cert.IssueName);
+
+     document.getElementById('PSPCB_date').innerHTML='Дата подписи: '+SigningTime;
+     document.getElementById('PSPCB_isvalid').innerHTML='Действительна: '+IsValid;
+     document.getElementById('PSPCB_owner').innerHTML='Владелец:  '+owner;
+*/     
+     alert('ok');
+     return true;
+	}, certListBoxId);
+
+}
+
+
+/*
+ * Проверка совмещенной подписи с извлечением файла
+ */
 function SignCadesBES_Async_File_veref_getfile(){
 	var CADESCOM_CADES_BES = 1;
 	cadesplugin.async_spawn(function*(arg) {
 	
 	var oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
 	 
-	 // подписанное сообщение
-	 var sSignedMessage = document.getElementById("SignatureTxtBox").value;
-	 var promise;
+	 // подписанное сообщение из textarea
+	 //var sSignedMessage = document.getElementById("SignatureTxtBox").value;
+	let path = document.getElementById("href_signed_sov").href;
+	// с сервера получаем строку(совмещенного подписанного файла) в Base64
+	var sSignedMessage = yield readStringFromFileAtPath('GET',path);
+	 var promise,oSigner,oSignerN;
 	 var datafromBase64;
 	 var test;
      try {
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
          yield oSignedData.propset_ContentEncoding(1);
+         oSigner = yield oSignedData.Signers;
+         oSignerN = yield oSigner.Item(1);
          fromBase64 = yield oSignedData.Content;
          
          var byteCharacters = atob(fromBase64);
@@ -633,17 +782,28 @@ function SignCadesBES_Async_File_veref_getfile(){
          var byteArray = new Uint8Array(byteNumbers);
          var blob1 = new Blob([byteArray], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
 
-         var fileName1 = "cool.docx";
+         var fileName1 = document.getElementById("href_signed_sov").text;
+         fileName1 = fileName1.replace('.p7s','');
+         
          saveAs(blob1, fileName1);
+
+         //2. Сам файл распарсенный
          
+         var SigningTime = yield oSignerN.SigningTime;
+         var cert = yield oSignerN.Certificate;
+         var owner = yield cert.SubjectName;
+         var serinfvalid = yield cert.IsValid();
+         var IsValid = yield serinfvalid.Result;
+
+         document.getElementById('SPSPCB_date').innerHTML='Дата подписи: '+SigningTime;
+         document.getElementById('SPSPCB_isvalid').innerHTML='Действительна: '+IsValid;
+         document.getElementById('SPSPCB_owner').innerHTML='Владелец:  '+owner;
          
-         alert('rrr '+oSignedData.Content);
      } catch (err) {
          alert("Failed to verify signature. Error: " + cadesplugin.getLastError(err));
          return false;
      }
-
-     alert('ok '+datafromBase64);
+     
 	});
 }
 
@@ -737,7 +897,12 @@ function SignCadesBES_Async_File(certListBoxId) {
             document.getElementById("SignatureTxtBox").innerHTML = Signature;
             SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
             
-            addFile_cadesSov_server(Signature,fileName)
+            var pathfile = yield addFile_cadesSov_server('/uploadFile3',Signature,fileName,null);
+            alert('444444444444v '+pathfile);
+            var a = document.getElementById('href_signed_sov');
+            a.text=pathfile.substring(pathfile.indexOf('\\')+1);
+            a.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+pathfile;
+            document.getElementById('div_href_signed_sov').style.display = 'block';
         }
         catch(err)
         {
@@ -746,51 +911,38 @@ function SignCadesBES_Async_File(certListBoxId) {
         }
     }, certListBoxId); //cadesplugin.async_spawn
     }
-
-function addFile_cadesSov_server(sinnature,name){
-	alert(name)
-	var body = 'cades_bes_sov=' + sinnature;
+/*
+ * Метод отправляет на сервер подписанный файл(совмещенная подпись) в формате Base64(строка)
+ * В ответ получает ссылку на сервере где лежит эта строка запакованная в namefile.p7s
+ * sinnature	-	строка в Base64
+ * name	-	имя будующего файла с расширением .p7s
+ */
+function addFile_cadesSov_server(url,sinnature,name,fileInBase64){
+	return new Promise(function (resolve, reject) {
+	var body = {cades_bes_sov: sinnature, namefile: name, fileInBase64: fileInBase64};
 	var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/uploadFile2', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+	      if (this.status >= 200 && this.status < 300) {
+	        resolve(xhr.response);
+	      } else {
+	        reject({
+	          status: this.status,
+	          statusText: xhr.statusText
+	        });
+	      }
+	    };
+	    xhr.onerror = function () {
+	      reject({
+	        status: this.status,
+	        statusText: xhr.statusText
+	      });
+	    };
+    xhr.send(JSON.stringify(body));
 
-    xhr.send(body);
-    
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState != 4) return;
-
-        //button.innerHTML = 'Готово!';
-
-        if (xhr.status != 200) {
-          // обработать ошибку
-          alert(xhr.status + ': ' + xhr.statusText);
-        } else {
-          // вывести результат
-          alert('OK '+xhr.responseText);
-        }
-      }
+	});
 };
-
-
-
-
-function create_addFile_inDOM(sinnature){
-	/*yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
-    yield oSignedData.propset_ContentEncoding(1);
-    fromBase64 = yield oSignedData.Content;*/
-    var byteCharacters = atob(sinnature);
-    var byteNumbers = new Array(byteCharacters.length);
-    for (var i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    var byteArray = new Uint8Array(byteNumbers);
-    //var blob1 = new Blob([byteArray], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
-    var blob1 = new Blob([byteArray], {type: "text/plain"});
-    var fileName1 = "cool.docx.p7s";
-    saveAs(blob1, fileName1);
-}
-
-
 
 
 function SignCadesXLong_Async(certListBoxId) {
@@ -1555,4 +1707,79 @@ function isIE() {
     return retVal;
 }
 
+	
+	/*
+	 * Метод извлекат текст (подписанный эцп текст из файла на сервере в кодировке Base64)
+	 */
+	function readStringFromFileAtPath(method, url) {
+		  return new Promise(function (resolve, reject) {
+		    var xhr = new XMLHttpRequest();
+		    xhr.open(method, url);
+		    xhr.onload = function () {
+		      if (this.status >= 200 && this.status < 300) {
+		        resolve(xhr.response);
+		      } else {
+		        reject({
+		          status: this.status,
+		          statusText: xhr.statusText
+		        });
+		      }
+		    };
+		    xhr.onerror = function () {
+		      reject({
+		        status: this.status,
+		        statusText: xhr.statusText
+		      });
+		    };
+		    xhr.send();
+		  });
+		}
+	/*
+	 * Метод используется при верефикации раздельной ЭЦП
+	 * Метод с сервера вытягивает подписанный файл .docx и тд (раздельная подпись) и
+	 * преобразовываем его в Base64
+	 * При обычной загрузке теряются байты кодировки кирилици. Приходится преобразовывать вначале в массив 
+	 * байтов потом в Uint8Array с послеующим преобразованием
+	 */
+	function readbinary(method, url) {
+		return new Promise(function (resolve, reject) {
+			var byteArray = [];
+		    var xhr = new XMLHttpRequest();
+		    xhr.open(method, url);
+		    xhr.overrideMimeType('text\/plain; charset=x-user-defined');
+		    xhr.onload = function () {
+		      if (this.status >= 200 && this.status < 300) {
+		    	  for (var i = 0; i < xhr.responseText.length; ++i) {
+		    		    byteArray.push(xhr.responseText.charCodeAt(i) & 0xff)
+		    		  }
+		    	var t = _arrayBufferToBase64(byteArray);  
+		        resolve(t);
+		      } else {
+		        reject({
+		          status: this.status,
+		          statusText: xhr.statusText
+		        });
+		      }
+		    };
+		    xhr.onerror = function () {
+		      reject({
+		        status: this.status,
+		        statusText: xhr.statusText
+		      });
+		    };
+		    xhr.send();
+		  });
+	}
+
+	function _arrayBufferToBase64( buffer ) {
+	    var binary = '';
+	    var bytes = new Uint8Array( buffer );
+	    var len = bytes.byteLength;
+	    for (var i = 0; i < len; i++) {
+	        binary += String.fromCharCode( bytes[ i ] );
+	    }
+	    return window.btoa( binary );
+	}
+	
+	
 async_resolve();

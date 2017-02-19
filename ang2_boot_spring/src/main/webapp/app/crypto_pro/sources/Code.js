@@ -106,6 +106,20 @@ function Common_SignCadesBES_File_ot(id) {
 }
 
 
+function SignCadesBES_parallelSovm(certListBoxId) {
+    var canAsync = !!cadesplugin.CreateObjectAsync;
+    if (canAsync) {
+        include_async_code().then(function () {
+            return Sign_parallelSovm(certListBoxId);
+        	
+        });
+    } else {
+        //return SignCadesBES_NPAPI_File(id);
+    	alert('Не доработано');
+    }
+}
+
+
 function Verefic_SignCadesBES_File_ot() {
     var canAsync = !!cadesplugin.CreateObjectAsync;
     if (canAsync) {
