@@ -106,6 +106,8 @@ public class CryptoController {
 	  public ResponseEntity<?> uploadFile3(@RequestBody BodyPost_razd body) {
 	  File file = null;
 	  try {
+		  	if(body.getNamefile().contains(".p7s")||
+  			body.getNamefile().contains(".p7s")){ body.setNamefile(body.getNamefile().replace(".p7s", ""));}
 		    System.out.println("##2 "+body.getNamefile());
 		    System.out.println("##2 "+body.getCades_bes_sov());
 		    System.out.println("##2 "+body.getFileInBase64());

@@ -552,7 +552,7 @@ function SignCadesBES_Async_File_veref_razdelnya(){
 	//	 	var dataToVerify = fileContent;
 	let path_file = document.getElementById("href_signed_razdFILE").href;
 	dataToVerify = yield readbinary('GET',path_file);
-	alert(dataToVerify) 
+	//alert(dataToVerify) 
 	 
 	 // подписанное сообщение
 	let path_ecp = document.getElementById("href_signed_razdPOD").href;
@@ -567,18 +567,31 @@ function SignCadesBES_Async_File_veref_razdelnya(){
          yield oSignedData.propset_Content(dataToVerify);
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES, true);
          oSigner = yield oSignedData.Signers;
-         oSignerN = yield oSigner.Item(1);
-         
-         var SigningTime = yield oSignerN.SigningTime;
-         var cert = yield oSignerN.Certificate;
-         var owner = yield cert.SubjectName;
-         var serinfvalid = yield cert.IsValid();
-         var IsValid = yield serinfvalid.Result;
-         
-         document.getElementById('PRPCB_date').innerHTML='Дата подписи: '+SigningTime;
-         document.getElementById('PRPCB_isvalid').innerHTML='Действительна: '+IsValid;
-         document.getElementById('PRPCB_owner').innerHTML='Владелец:  '+owner;
-;
+         var count = yield oSigner.Count;
+         let begin,end,SigningTime,serinfvalid,IsValid;
+         let par = document.getElementById('PRPCB_date');
+         par.innerHTML=''
+         while(count > 0){
+        	 oSignerN = yield oSigner.Item(count);
+        	 var cert = yield oSignerN.Certificate;
+             var owner = yield cert.SubjectName;
+             begin = yield owner.indexOf('CN=');
+             end = yield owner.indexOf(', ', begin);
+             
+             serinfvalid = yield cert.IsValid();
+             IsValid = yield serinfvalid.Result;
+             
+             SigningTime = new Date(yield oSignerN.SigningTime);
+             
+             owner = yield owner.substr(begin, end - begin);
+             
+             
+             let child = document.createElement('div');
+             par.appendChild(child);
+             child.innerHTML = 'Дата подписи: '+SigningTime+' Владелец:  '+owner+' Действительна: '+IsValid;
+             
+        	 count--;
+         }
      } catch (err) {
          alert("Failed to verify signature. Error: " + cadesplugin.getLastError(err));
          return false;
@@ -615,32 +628,44 @@ function SignCadesBES_Async_File_veref(){
      try {
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
          oSigner = yield oSignedData.Signers;
-         var count = oSigner.Count;
-         oSignerN = yield oSigner.Item(1);
-         //oSignerContent = yield oSignedData.Content;
+         var count = yield oSigner.Count;
+         let begin,end,SigningTime,serinfvalid,IsValid;
+         let par = document.getElementById('PSPCB_date');
+         par.innerHTML='';
+         while(count > 0){
+        	 oSignerN = yield oSigner.Item(count);
+        	 var cert = yield oSignerN.Certificate;
+             var owner = yield cert.SubjectName;
+             begin = yield owner.indexOf('CN=');
+             end = yield owner.indexOf(', ', begin);
+             
+             serinfvalid = yield cert.IsValid();
+             IsValid = yield serinfvalid.Result;
+             
+             SigningTime = new Date(yield oSignerN.SigningTime);
+             
+             owner = yield owner.substr(begin, end - begin);
+             
+             let child = document.createElement('div');
+             par.appendChild(child);
+             child.innerHTML = 'Дата подписи: '+SigningTime+' Владелец:  '+owner+' Действительна: '+IsValid;
+             
+        	 count--;
+         }
+        // oSignerN = yield oSigner.Item(1);
      } catch (err) {
          alert("Failed to verify signature. Error: " + cadesplugin.getLastError(err));
          return false;
      }
-
      
      
-     var SigningTime = yield oSignerN.SigningTime;
-     var cert = yield oSignerN.Certificate;
-     var owner = yield cert.SubjectName;
-     var serinfvalid = yield cert.IsValid();
-     var IsValid = yield serinfvalid.Result;
      
-     alert(yield cert.SerialNumber);
+     /*alert(yield cert.SerialNumber);
      alert(yield cert.Thumbprint);
      alert(yield cert.ValidFromDate);
      alert(yield cert.ValidToDate);
      alert(yield cert.Version);
-     alert(yield cert.IssueName);
-
-     document.getElementById('PSPCB_date').innerHTML='Дата подписи: '+SigningTime;
-     document.getElementById('PSPCB_isvalid').innerHTML='Действительна: '+IsValid;
-     document.getElementById('PSPCB_owner').innerHTML='Владелец:  '+owner;
+     alert(yield cert.IssueName);*/
      
      
      return true;
@@ -648,7 +673,7 @@ function SignCadesBES_Async_File_veref(){
 }
 
 /*
- * Параллелная совмещенная подпись подпись 
+ * Параллелная совмещенная подпись 
  */
 function Sign_parallelSovm(certListBoxId){
 	var CADESCOM_CADES_BES = 1;
@@ -726,27 +751,108 @@ function Sign_parallelSovm(certListBoxId){
      document.getElementById("SignatureTxtBox").innerHTML = sSignedMessage1;
      SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
      
-     /*var SigningTime = yield oSignerN.SigningTime;
-     var cert = yield oSignerN.Certificate;
-     var owner = yield cert.SubjectName;
-     var serinfvalid = yield cert.IsValid();
-     var IsValid = yield serinfvalid.Result;
+     var pathfile = yield addFile_cadesSov_server('/uploadFile3',sSignedMessage1,fileName,null);
+     var a = document.getElementById('href_signed_sov');
+     a.text=pathfile.substring(pathfile.indexOf('\\')+1);
+     a.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+pathfile;
+     document.getElementById('div_href_signed_sov').style.display = 'block';
      
-     alert(yield cert.SerialNumber);
-     alert(yield cert.Thumbprint);
-     alert(yield cert.ValidFromDate);
-     alert(yield cert.ValidToDate);
-     alert(yield cert.Version);
-     alert(yield cert.IssueName);
-
-     document.getElementById('PSPCB_date').innerHTML='Дата подписи: '+SigningTime;
-     document.getElementById('PSPCB_isvalid').innerHTML='Действительна: '+IsValid;
-     document.getElementById('PSPCB_owner').innerHTML='Владелец:  '+owner;
-*/     
-     alert('ok');
+     alert('OK');
      return true;
 	}, certListBoxId);
+}
 
+
+/*
+ * Параллелная раздельная подпись 
+ */
+function Sign_parallelRaz(certListBoxId){
+	var CADESCOM_CADES_BES = 1;
+	cadesplugin.async_spawn(function*(arg) {
+		
+		var e = document.getElementById(arg[0]);
+        var selectedCertID = e.selectedIndex;
+        if (selectedCertID == -1) {
+            alert("Select certificate");
+            return;
+        }
+
+        var thumbprint = e.options[selectedCertID].value.split(" ").reverse().join("").replace(/\s/g, "").toUpperCase();
+        try {
+            var oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+            yield oStore.Open();
+        } catch (err) {
+            alert('Failed to create CAdESCOM.Store: ' + err.number);
+            return;
+        }
+
+        var CAPICOM_CERTIFICATE_FIND_SHA1_HASH = 0;
+        var all_certs = yield oStore.Certificates;
+        var oCerts = yield all_certs.Find(CAPICOM_CERTIFICATE_FIND_SHA1_HASH, thumbprint);
+
+        if ((yield oCerts.Count) == 0) {
+            alert("Certificate not found");
+            return;
+        }
+        var certificate = yield oCerts.Item(1);
+
+
+        var SignatureFieldTitle = document.getElementsByName("SignatureTitle");
+        var Signature;
+        try
+        {
+            FillCertInfo_Async(certificate);
+            var errormes = "",oSigner;
+            try {
+                oSigner = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPSigner");
+            } catch (err) {
+                errormes = "Failed to create CAdESCOM.CPSigner: " + err.number;
+                throw errormes;
+            }
+            
+            
+            if (oSigner) {
+                yield oSigner.propset_Certificate(certificate);
+            }
+            else {
+                errormes = "Failed to create CAdESCOM.CPSigner";
+                throw errormes;
+            }
+		
+            var oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
+
+	       	let path_file = document.getElementById("href_signed_razdFILE").href;
+	       	dataToVerify = yield readbinary('GET',path_file);
+       	 
+	       	let path_ecp = document.getElementById("href_signed_razdPOD").href;
+	       	var sSignedMessage = yield readStringFromFileAtPath('GET',path_ecp);
+           	yield oSignedData.propset_ContentEncoding(1); //CADESCOM_BASE64_TO_BINARY
+           yield oSignedData.propset_Content(dataToVerify);
+            
+           var oSigner,sSignedMessage1,oSignerN,oSignerContent,tyty;
+           yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES, true);
+           sSignedMessage1 = yield  oSignedData.CoSignCades(oSigner, CADESCOM_CADES_BES,0);
+         /*oSigner = yield oSignedData.Signers;
+         var count = oSigner.Count;
+         oSignerN = yield oSigner.Item(1);*/
+         //oSignerContent = yield oSignedData.Content;
+     } catch (err) {
+         alert("Failed to verify signature. Error: " + err.message);
+         return false;
+     }
+
+     document.getElementById("SignatureTxtBox").innerHTML = sSignedMessage1;
+     SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
+     
+     var pathfile = yield addFile_cadesSov_server('/uploadFile3',sSignedMessage1,fileName,null);
+     var a = document.getElementById('href_signed_razdPOD');
+     a.text=pathfile.substring(pathfile.indexOf('\\')+1);
+     a.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+pathfile;
+     
+     
+     alert('OK');
+     return true;
+	}, certListBoxId);
 }
 
 
@@ -771,9 +877,35 @@ function SignCadesBES_Async_File_veref_getfile(){
          yield oSignedData.VerifyCades(sSignedMessage, CADESCOM_CADES_BES);
          yield oSignedData.propset_ContentEncoding(1);
          oSigner = yield oSignedData.Signers;
-         oSignerN = yield oSigner.Item(1);
-         fromBase64 = yield oSignedData.Content;
+         //oSignerN = yield oSigner.Item(1);
+         var count = yield oSigner.Count;
+         let begin,end,SigningTime,serinfvalid,IsValid;
+         let par = document.getElementById('PSPCB_date');
+         par.innerHTML=''
+         while(count > 0){
+        	 oSignerN = yield oSigner.Item(count);
+        	 var cert = yield oSignerN.Certificate;
+             var owner = yield cert.SubjectName;
+             begin = yield owner.indexOf('CN=');
+             end = yield owner.indexOf(', ', begin);
+             
+             serinfvalid = yield cert.IsValid();
+             IsValid = yield serinfvalid.Result;
+             
+             SigningTime = new Date(yield oSignerN.SigningTime);
+             
+             owner = yield owner.substr(begin, end - begin);
+             
+             
+             let child = document.createElement('div');
+             par.appendChild(child);
+             child.innerHTML = 'Дата подписи: '+SigningTime+' Владелец:  '+owner+' Действительна: '+IsValid;
+             
+        	 count--;
+         }
          
+         
+         fromBase64 = yield oSignedData.Content;
          var byteCharacters = atob(fromBase64);
          var byteNumbers = new Array(byteCharacters.length);
          for (var i = 0; i < byteCharacters.length; i++) {
@@ -786,18 +918,6 @@ function SignCadesBES_Async_File_veref_getfile(){
          fileName1 = fileName1.replace('.p7s','');
          
          saveAs(blob1, fileName1);
-
-         //2. Сам файл распарсенный
-         
-         var SigningTime = yield oSignerN.SigningTime;
-         var cert = yield oSignerN.Certificate;
-         var owner = yield cert.SubjectName;
-         var serinfvalid = yield cert.IsValid();
-         var IsValid = yield serinfvalid.Result;
-
-         document.getElementById('SPSPCB_date').innerHTML='Дата подписи: '+SigningTime;
-         document.getElementById('SPSPCB_isvalid').innerHTML='Действительна: '+IsValid;
-         document.getElementById('SPSPCB_owner').innerHTML='Владелец:  '+owner;
          
      } catch (err) {
          alert("Failed to verify signature. Error: " + cadesplugin.getLastError(err));
@@ -807,7 +927,9 @@ function SignCadesBES_Async_File_veref_getfile(){
 	});
 }
 
-
+/*
+ * Совмещенная подпись(не параллельная) 
+ */
 function SignCadesBES_Async_File(certListBoxId) {
     cadesplugin.async_spawn(function*(arg) {
         var e = document.getElementById(arg[0]);
@@ -898,7 +1020,6 @@ function SignCadesBES_Async_File(certListBoxId) {
             SignatureFieldTitle[0].innerHTML = "Подпись сформирована успешно:";
             
             var pathfile = yield addFile_cadesSov_server('/uploadFile3',Signature,fileName,null);
-            alert('444444444444v '+pathfile);
             var a = document.getElementById('href_signed_sov');
             a.text=pathfile.substring(pathfile.indexOf('\\')+1);
             a.href = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/'+pathfile;

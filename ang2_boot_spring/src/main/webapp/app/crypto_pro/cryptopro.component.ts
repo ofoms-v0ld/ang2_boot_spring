@@ -16,43 +16,43 @@ constructor(){
  	let head = document.getElementsByTagName('head').item(0);
 	let s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/es6-promise.min.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/ie_eventlistner_polyfill.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/FileSaver.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/cadesplugin_api.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/Code.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/async_code.js";
 	head.appendChild(s);
 	
 	s = document.createElement("script");
 	s.type = "text/javascript";
-	s.charset = "utf-8";
+	s.charset = "UTF-8";
 	s.src = "./app/crypto_pro/sources/init_plagin.js";
 	head.appendChild(s);
 

@@ -38,6 +38,15 @@ openFileButton.onchange =  function (event) {
         fileContent = fileData.substr(fileData.indexOf(header) + header.length);
         fileName =input.files[0].name;
         alert(fileContent);
+        
+        document.getElementById('PSPCB_date').innerHTML="";
+        document.getElementById('PRPCB_date').innerHTML="";
+        
+        
+        /*document.getElementById('div_href_signed_razdPOD').style.display = "none";
+        document.getElementById('div_href_signed_razdFILE').style.display = "none";
+        document.getElementById('div_href_signed_sov').style.display = "none";*/
+        
     };
 };
 
@@ -84,6 +93,16 @@ if ('' == fileContent || undefined == fileContent)
 	{ alert('Выбран пустой файл'); return; }
 else
 SignCadesBES_parallelSovm('CertListBox');
+};
+
+sing_cadebes_par_raz.onclick = function () {
+	if ('' == openFileButton.value)
+	{ alert('Файл не выбран.'); return; }
+else
+if ('' == fileContent || undefined == fileContent)
+	{ alert('Выбран пустой файл'); return; }
+else
+SignCadesBES_parallelRaz('CertListBox');
 };
 
 

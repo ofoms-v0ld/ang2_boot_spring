@@ -60,9 +60,6 @@
 										<td>
 											<input type='button' value='Подписать' id="sing_cadebes_sov"/>
 										</td>
-										<td>
-											<div id="div_href_signed_sov" style="display:none;"><a href="" id="href_signed_sov"></a></div>
-										</td>
 									</tr>
 									<tr>
 										<td>
@@ -70,12 +67,6 @@
 										</td>		
 										<td>
 											<input type='button' value='Подписать' id="sing_cadebes_raz"/>
-										</td>
-										<td>
-											<div id="div_href_signed_razdPOD" style="display:none;"><a href="" id="href_signed_razdPOD"></a></div>
-										</td>
-										<td>
-											<div id="div_href_signed_razdFILE" style="display:none;"><a href="" id="href_signed_razdFILE"></a></div>
 										</td>
 									</tr>
 									<tr>
@@ -93,11 +84,13 @@
 										<td>
 											<input type='button' value='Подписать' id="sing_cadebes_par_sov"/>
 										</td>
+									</tr>
+									<tr>
 										<td>
-											<!-- <div id="div_href_signed_razdPOD" style="display:none;"><a href="" id="href_signed_razdPOD"></a></div> -->
-										</td>
+											Параллельная раздельная подпись Cades-bes:
+										</td>		
 										<td>
-											<!-- <div id="div_href_signed_razdFILE" style="display:none;"><a href="" id="href_signed_razdFILE"></a></div> -->
+											<input type='button' value='Подписать' id="sing_cadebes_par_raz"/>
 										</td>
 									</tr>
 									<tr>
@@ -115,11 +108,7 @@
 										<td>
 										<input type="button" value="Проверить" id="check_and_getfile"/>
 										</td>
-										<td>
-										<div id="SPSPCB_date"></div>
-										<div id="SPSPCB_isvalid"></div>
-										<div id="SPSPCB_owner"></div>
-										</td>
+										
 									</tr>
 									<tr>
 										<td>
@@ -127,11 +116,6 @@
 										</td>		
 										<td>
 										<input type="button" value="Проверить" id="check_sovsing"/>
-										</td>
-										<td>
-										<div id="PSPCB_date"></div>
-										<div id="PSPCB_isvalid"></div>
-										<div id="PSPCB_owner"></div>
 										</td>
 									</tr>
 									<tr>
@@ -141,12 +125,35 @@
 										<td>
 										<input type="button" value="Проверить" id="check_razsing"/>
 										</td>
+									</tr>
+								</table>
+								<table>
+								<!-- совмещенная подпись -->
+									<tr>
 										<td>
-										<div id="PRPCB_date"></div>
-										<div id="PRPCB_isvalid"></div>
-										<div id="PRPCB_owner"></div>
+											<div id="div_href_signed_sov" style="display:none;"><a href="" id="href_signed_sov"></a></div>
 										</td>
 									</tr>
+									<tr>
+										<td>
+										<div id="PSPCB_date"></div>
+										</td>
+									</tr>
+									<!-- раздельная подпись -->
+									<tr>
+										<td>
+											<div id="div_href_signed_razdPOD" style="display:none;"><a href="" id="href_signed_razdPOD"></a></div>
+											<div id="div_href_signed_razdFILE" style="display:none;"><a href="" id="href_signed_razdFILE"></a></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="PRPCB_date"></div>
+											<!-- <div id="PRPCB_isvalid"></div>
+											<div id="PRPCB_owner"></div> -->
+										</td>
+									</tr>
+									
 								</table>
                                 <p id="info_msg" name="SignatureTitle">Подпись:</p>
                                 <div id="item_border">
