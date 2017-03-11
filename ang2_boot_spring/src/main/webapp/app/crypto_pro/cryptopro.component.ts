@@ -5,9 +5,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	  selector:'my-crypto',
-	  //template: `<div><h1>TEST CRYPTO review</h1></div>
-	  //<button routerLink="review">Go to sidekicks</button>
-	  //`
 	  templateUrl: './app/crypto_pro/cryptopro.component.html',
 	  styleUrls: [ './app/crypto_pro/sources/demopage.css' ]
 })

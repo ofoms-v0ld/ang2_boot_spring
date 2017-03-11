@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	  selector:'my-crypto',
-	  //templateUrl: './app/mycontact/mycontact.component.html'
 	  template:'<div>TEST CRYPTO</div>'
 })
 export class CryptoProDetailComponent {

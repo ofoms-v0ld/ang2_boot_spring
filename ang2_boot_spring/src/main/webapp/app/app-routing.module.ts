@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'mycontact', component: MycontactComponent },
   { path: 'heroes',     component: HeroesComponent },
   { path: 'websoc',     component: WebsocketComponent }
+  ,{ path: 'rout_module',    loadChildren: 'app/routing/routing.module#RoutingModule'}
+];  }
 ];
 
 @NgModule({

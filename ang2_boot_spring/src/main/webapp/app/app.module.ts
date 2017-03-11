@@ -1,18 +1,34 @@
+/* I use a lazy-load for RoutingModule
+   1. Comment import RoutingModule and comment include imports in NgClass
+   2. Add in App-routing.ts path that power on RoutingModule
+   3. And in rout_routing.ts change the path 'optrout' to '' instead. 
+ */
+
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 
+/* component */
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
 import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroesComponent }      from './heroes.component';
 import { MycontactComponent }      from './mycontact/mycontact.component';
 import { WebsocketComponent }      from './websocket_app/websocket.component';
+
+/* sevices */
 import { HeroService }          from './hero.service';
 
+	/* app modules */
+// comment and use lazy-load module	
+//import { RoutingModule }      from './routing/routing.module';
 import { CryptoProModule }      from './crypto_pro/crypto_pro.module';
 
+	/*rout module*/
 import { AppRoutingModule }     from './app-routing.module';
+
+
+
 
 @NgModule({
   imports: [
@@ -20,6 +36,8 @@ import { AppRoutingModule }     from './app-routing.module';
     FormsModule,
     AppRoutingModule,
     CryptoProModule
+//  ,RoutingModule
+
   ],
   declarations: [
     AppComponent,
@@ -29,7 +47,7 @@ import { AppRoutingModule }     from './app-routing.module';
     HeroesComponent,
     WebsocketComponent
   ],
-  providers: [ HeroService ],
+  providers: [ HeroService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
