@@ -12,6 +12,7 @@
         map: {
             // our app is within the app folder
             app: 'app',
+            
             // angular bundles
             '@angular/core': 'node_modules/@angular/core/bundles/core.umd.js',
             '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
@@ -23,6 +24,11 @@
             '@angular/forms': 'node_modules/@angular/forms/bundles/forms.umd.js',
             '@angular/upgrade': 'node_modules/@angular/upgrade/bundles/upgrade.umd.js',
             '@angular2-websocket': 'node_modules/angular2-websocket/angular2-websocket.js',
+            
+            //bootstrap
+            'moment': 'node_modules/moment/bundles/moment.umd.js',
+            'ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
+            
             // other libraries
             'rxjs':                      'node_modules/rxjs'
         },

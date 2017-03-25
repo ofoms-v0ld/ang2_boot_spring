@@ -8,6 +8,11 @@ import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+//bootstrap alert import part 1
+import {AlertModule} from 'ng2-bootstrap';
+
 /* component */
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
@@ -35,7 +40,8 @@ import { AppRoutingModule }     from './app-routing.module';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    CryptoProModule
+    CryptoProModule,
+    AlertModule.forRoot()
 //  ,RoutingModule
 
   ],
@@ -47,7 +53,9 @@ import { AppRoutingModule }     from './app-routing.module';
     HeroesComponent,
     WebsocketComponent
   ],
-  providers: [ HeroService],
+  // for exclude the 404 error
+  providers: [HeroService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  //providers: [ HeroService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

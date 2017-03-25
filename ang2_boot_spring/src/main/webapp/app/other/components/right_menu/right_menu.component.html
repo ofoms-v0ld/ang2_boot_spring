@@ -1,0 +1,12 @@
+<button (click)="toggleMenu()" class="hamburger">
+  <span>toggle menu</span>
+</button>
+
+<h1>
+  {{title}}
+</h1>
+
+<p>
+  Angular 2 Animate Tutorial by <a href="https://www.thecodecampus.de">theCodeCampus</a>. See <a href="http://blog.thecodecampus.de/angular-2-animate-creating-sliding-side-navigation/">this Blogpost</a> for full tutorial
+</p>
+<app-menu-other-animation_1 [@slideInOut]="menuState"></app-menu-other-animation_1>
