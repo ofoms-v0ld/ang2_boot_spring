@@ -4,9 +4,37 @@
    3. And in rout_routing.ts change the path 'optrout' to '' instead. 
  */
 
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import './rxjs-operators';
+
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule }    from '@angular/http';
+
+import { PaginationModule } from 'ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap';
+//import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule } from 'ng2-bootstrap';
+import { ProgressbarModule } from 'ng2-bootstrap';
+import { SlimLoadingBarService, SlimLoadingBarComponent } from 'ng2-slim-loading-bar';
+import { TimepickerModule } from 'ng2-bootstrap';
+
+import { AppComponent }   from './app.component';
+import { DateFormatPipe } from './shared/pipes/date-format.pipe';
+import { HighlightDirective } from './shared/directives/highlight.directive';
+import { HomeComponent } from './home/home.component';
+import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
+import { ScheduleEditComponent } from './schedules/schedule-edit.component';
+import { ScheduleListComponent } from './schedules/schedule-list.component';
+import { UserCardComponent } from './users/user-card.component';
+import { UserListComponent } from './users/user-list.component';
+
+import { DataService } from './shared/services/data.service';
+import { ConfigService } from './shared/utils/config.service';
+import { ItemsService } from './shared/utils/items.service';
+import { MappingService } from './shared/utils/mapping.service';
+import { NotificationService } from './shared/utils/notification.service';
+
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -41,12 +69,29 @@ import { AppRoutingModule }     from './app-routing.module';
     FormsModule,
     AppRoutingModule,
     CryptoProModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    DatepickerModule.forRoot(),
+    HttpModule,
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    PaginationModule.forRoot(),
+    TimepickerModule.forRoot()
 //  ,RoutingModule
+
+        
 
   ],
   declarations: [
-    AppComponent,
+  	AppComponent,
+    DateFormatPipe,
+    HighlightDirective,
+    HomeComponent,
+    MobileHideDirective,
+    ScheduleEditComponent,
+    ScheduleListComponent,
+    SlimLoadingBarComponent,
+    UserCardComponent,
+    UserListComponent,
     DashboardComponent,
     HeroDetailComponent,
     MycontactComponent,
@@ -54,8 +99,17 @@ import { AppRoutingModule }     from './app-routing.module';
     WebsocketComponent
   ],
   // for exclude the 404 error
-  providers: [HeroService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  //providers: [ HeroService],
+  providers: [
+  	ConfigService,
+	DataService,
+	ItemsService,
+	MappingService,
+	NotificationService,
+	SlimLoadingBarService
+  	HeroService,
+  	{provide: LocationStrategy, useClass: HashLocationStrategy}
+  ]
+  
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

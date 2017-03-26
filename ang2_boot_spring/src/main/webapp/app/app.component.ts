@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+
+// Add the RxJS Observable operators we need in this app.
+import './rxjs-operators';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-app',
-  template: `
+  selector: 'scheduler',
+  templateUrl:'app.component.html'
+  /*template: `
   	<alert type="success">
 	    <nav>
 	      <a routerLink="/" routerLinkActive="active">General</a>
@@ -14,19 +18,19 @@ import { Component } from '@angular/core';
 	      <a routerLink="cryptopro" routerLinkActive="active">CryptoPro</a>
 	      <a routerLink="rout_module" routerLinkActive="active">Routing</a>
 	      <a routerLink="other_module" routerLinkActive="active">Other</a>
+
 	    </nav>
     </alert>
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css']*/
 })
 export class AppComponent {
 
+	constructor(private viewContainerRef: ViewContainerRef) {
+        // You need this small hack in order to catch application root view container ref
+        this.viewContainerRef = viewContainerRef;
+    }
 }
 
 
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

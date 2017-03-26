@@ -25,12 +25,13 @@
             '@angular/upgrade': 'node_modules/@angular/upgrade/bundles/upgrade.umd.js',
             '@angular2-websocket': 'node_modules/angular2-websocket/angular2-websocket.js',
             
-            //bootstrap
+            'lodash': 'node_modules/lodash/lodash.js',
             'moment': 'node_modules/moment/bundles/moment.umd.js',
             'ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
+            'ng2-slim-loading-bar': 'node_modules/ng2-slim-loading-bar',
             
             // other libraries
-            'rxjs':                      'node_modules/rxjs'
+            'rxjs':'node_modules/rxjs'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -40,7 +41,8 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            },
+            'ng2-slim-loading-bar': { main: 'index.js', defaultExtension: 'js' },
         }
     });
 })(this);
