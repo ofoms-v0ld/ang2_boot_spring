@@ -22,7 +22,7 @@ export class DataService {
     }
 
     getUsers(): Observable<IUser[]> {
-        return this.http.get(this._baseUrl + 'users')
+        return this.http.get(this._baseUrl + 'users/')
             .map((res: Response) => {
                 return res.json();
             })

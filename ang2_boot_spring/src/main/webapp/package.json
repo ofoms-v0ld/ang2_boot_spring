@@ -25,12 +25,12 @@
   "bugs": {
     "url": "https://github.com/RedFroggy/angular-spring-dynamic-form/issues"
   },
-  "bin":{
-    "ntsc":"node_modules/ntypescript/bin/ntypescript.js"
+  "bin": {
+    "ntsc": "node_modules/ntypescript/bin/ntypescript.js"
   },
   "scripts": {
     "build": "ntsc -p ../../../",
-	 "tsc": "tsc",
+    "tsc": "tsc",
     "tsc:w": "tsc -w",
     "start-test": "npm run tsc:w"
   },
@@ -45,13 +45,14 @@
     "@angular/platform-server": "2.2.1",
     "@angular/router": "3.2.1",
     "@angular/upgrade": "2.2.1",
+    "alertifyjs": "^1.9.0",
     "bootstrap": "^3.3.7",
-    "ng2-bootstrap": "1.1.16-11",
-    "ng2-slim-loading-bar": "1.5.1",
     "core-js": "2.4.1",
     "font-awesome": "4.6.1",
     "jquery": "2.1.4",
     "lodash": "^4.17.1",
+    "ng2-bootstrap": "1.1.16-11",
+    "ng2-slim-loading-bar": "1.5.1",
     "ntypescript": "1.201609302242.1",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-beta.12",
