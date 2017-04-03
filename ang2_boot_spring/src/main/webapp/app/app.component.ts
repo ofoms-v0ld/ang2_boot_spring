@@ -2,11 +2,13 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 // Add the RxJS Observable operators we need in this app.
 import './rxjs-operators';
+//import { RightMenuComponent } from './main/sadebar/right_menu.component';
 
 @Component({
   moduleId: module.id,
   selector: 'scheduler',
   templateUrl:'app.component.html'
+  //directives: [RightMenuComponent]
   /*template: `
   	<alert type="success">
 	    <nav>
@@ -24,9 +26,10 @@ import './rxjs-operators';
     <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']*/
+  
 })
 export class AppComponent {
-
+ 	
 	constructor(private viewContainerRef: ViewContainerRef) {
         // You need this small hack in order to catch application root view container ref
         this.viewContainerRef = viewContainerRef;

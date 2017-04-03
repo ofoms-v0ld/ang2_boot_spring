@@ -41,12 +41,11 @@ export class DataService {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
-        return this.http.post(this._baseUrl + 'users/', JSON.stringify(user), {
+        return this.http.post(this._baseUrl + 'users/add', JSON.stringify(user), {
             headers: headers
         })
             .map((res: Response) => {
-                return res.json();
+                return res.json()[0];
             })
             .catch(this.handleError);
     }
@@ -56,7 +55,7 @@ export class DataService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.put(this._baseUrl + 'users/' + user.id, JSON.stringify(user), {
+        return this.http.put(this._baseUrl + 'users/update/' + user.id, JSON.stringify(user), {
             headers: headers
         })
             .map((res: Response) => {
@@ -66,7 +65,7 @@ export class DataService {
     }
 
     deleteUser(id: number): Observable<void> {
-        return this.http.delete(this._baseUrl + 'users/' + id)
+        return this.http.delete(this._baseUrl + 'users/delete/' + id)
             .map((res: Response) => {
                 return;
             })
@@ -89,7 +88,7 @@ export class DataService {
     }
     */
 
-    getSchedules(page?: number, itemsPerPage?: number): Observable<PaginatedResult<ISchedule[]>> {
+    getSchedules(page: number, itemsPerPage: number): Observable<PaginatedResult<ISchedule[]>> {
         var peginatedResult: PaginatedResult<ISchedule[]> = new PaginatedResult<ISchedule[]>();
 
         let headers = new Headers();
@@ -97,7 +96,7 @@ export class DataService {
             headers.append('Pagination', page + ',' + itemsPerPage);
         }
 
-        return this.http.get(this._baseUrl + 'schedules', {
+        return this.http.get(this._baseUrl + 'schedules/', {
             headers: headers
         })
             .map((res: Response) => {
@@ -107,7 +106,7 @@ export class DataService {
                 if (res.headers.get("Pagination") != null) {
                     //var pagination = JSON.parse(res.headers.get("Pagination"));
                     var paginationHeader: Pagination = this.itemsService.getSerialized<Pagination>(JSON.parse(res.headers.get("Pagination")));
-                    console.log(paginationHeader);
+                    alert('gf '+paginationHeader);
                     peginatedResult.pagination = paginationHeader;
                 }
                 return peginatedResult;

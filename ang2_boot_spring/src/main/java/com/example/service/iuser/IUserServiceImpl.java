@@ -19,4 +19,15 @@ public class IUserServiceImpl implements IUserService {
 		return iuserRepository.findAll();
 	}
 
+	@Override
+	public IUser saveOrUpdate(IUser iuser) {
+		IUser i =	iuserRepository.saveAndFlush(iuser);
+		return i;
+	}
+	
+	@Override
+	public void delete(int id) {
+		iuserRepository.delete(id);
+	}
+
 }

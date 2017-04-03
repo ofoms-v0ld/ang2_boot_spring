@@ -4,14 +4,20 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name="iuser")
 public class IUser  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	long id;
+	@GenericGenerator(name="kaugen" , strategy="increment")
+	@GeneratedValue(generator="kaugen")
+	int id;
 	@Column(name="name")
 	String name;
 	@Column(name="avatar")
@@ -24,10 +30,10 @@ public class IUser  implements Serializable{
 		// TODO Auto-generated constructor stub
 	
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {

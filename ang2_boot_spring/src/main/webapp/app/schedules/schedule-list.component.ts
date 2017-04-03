@@ -76,11 +76,13 @@ export class ScheduleListComponent implements OnInit {
 
     loadSchedules() {
         this.loadingBarService.start();
-
+		alert('ds '+this.currentPage +' - '+this.itemsPerPage);
         this.dataService.getSchedules(this.currentPage, this.itemsPerPage)
             .subscribe((res: PaginatedResult<ISchedule[]>) => {
                 this.schedules = res.result;// schedules;
-                this.totalItems = res.pagination.TotalItems;
+                //this.totalItems = res.pagination.TotalItems;
+                this.totalItems = 10;
+                this.itemsPerPage = 5;
                 this.loadingBarService.complete();
             },
             error => {
@@ -120,8 +122,8 @@ export class ScheduleListComponent implements OnInit {
             .subscribe((schedule: IScheduleDetails) => {
                 this.scheduleDetails = this.itemsService.getSerialized<IScheduleDetails>(schedule);
                 // Convert date times to readable format
-                this.scheduleDetails.timeStart = new DateFormatPipe().transform(schedule.timeStart, ['local']);
-                this.scheduleDetails.timeEnd = new DateFormatPipe().transform(schedule.timeEnd, ['local']);
+                this.scheduleDetails.timeStart = new DateFormatPipe().transform(schedule.timestart, ['local']);
+                this.scheduleDetails.timeEnd = new DateFormatPipe().transform(schedule.timeend, ['local']);
                 this.loadingBarService.complete();
                 this.selectedScheduleLoaded = true;
                 this.childModal.show();//.open('lg');

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.domain.IUser;
 
 
-public interface IUserRepository extends JpaRepository<IUser,Long> {
+public interface IUserRepository extends JpaRepository<IUser,Integer> {
 
 }

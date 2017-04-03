@@ -85,7 +85,7 @@ export class UserCardComponent implements OnInit {
                 this.user = this.itemsService.getSerialized<IUser>(userCreated);
                 this.edittedUser = this.itemsService.getSerialized<IUser>(this.user);
                 this.onEdit = false;
-
+                
                 this.userCreated.emit({ value: userCreated });
                 //this.slimLoader.complete();
             },

@@ -26,8 +26,8 @@
                 <td>{{schedule.creator}}</td>
                 <td>{{schedule.description}}</td>
                 <td>{{schedule.location}}</td>
-                <td>{{schedule.timeStart | dateFormat | date:'medium'}}</td>
-                <td>{{schedule.timeEnd | dateFormat | date:'medium'}}</td>
+                <td>{{schedule.timestart | dateFormat | date:'medium'}}</td>
+                <td>{{schedule.timeend | dateFormat | date:'medium'}}</td>
                 <td><button class="btn btn-primary" (click)="viewScheduleDetails(schedule.id)">
             <i class="fa fa-info-circle" aria-hidden="true"></i>Details</button>
                 </td>

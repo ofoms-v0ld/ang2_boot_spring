@@ -6,4 +6,7 @@ import com.example.domain.IUser;
 
 public interface IUserService {
 	public List<IUser> findAll();
+	public IUser saveOrUpdate(IUser iuser);
+	
+	public void delete(int id);
 }

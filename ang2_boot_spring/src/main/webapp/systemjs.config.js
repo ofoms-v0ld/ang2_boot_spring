@@ -29,6 +29,7 @@
             'moment': 'node_modules/moment/bundles/moment.umd.js',
             'ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
             'ng2-slim-loading-bar': 'node_modules/ng2-slim-loading-bar',
+            'ng-sidebar': 'node_modules/ng-sidebar',
             
             // other libraries
             'rxjs':'node_modules/rxjs'
@@ -43,6 +44,7 @@
                 defaultExtension: 'js'
             },
             'ng2-slim-loading-bar': { main: 'index.js', defaultExtension: 'js' },
+            'ng-sidebar': { main: 'lib/index', defaultExtension: 'js'}
         }
     });
 })(this);

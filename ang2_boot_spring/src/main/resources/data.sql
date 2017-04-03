@@ -21,3 +21,31 @@ INSERT INTO iuser(id,name,avatar,profession,schedulescreated) VALUES (8,'JSF in 
 INSERT INTO iuser(id,name,avatar,profession,schedulescreated) VALUES (9,'Java Interview Questions','Subramanian','Walls', 450);
 INSERT INTO iuser(id,name,avatar,profession,schedulescreated) VALUES (10,'Java Complete Reference','Herbert','Walls', 450);
 
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (1,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',2,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (2,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',3,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (3,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',4,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (4,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',2,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (5,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',3,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (6,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',3,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (7,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',5,'1');
+INSERT INTO ischedule(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees)
+VALUES (8,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',5,'1');
+
+
+INSERT INTO ischeduledetails(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees,statuses,types)
+VALUES (1,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',2,'1','2','3');
+INSERT INTO ischeduledetails(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees,statuses,types)
+VALUES (2,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',3,'1','2','3');
+INSERT INTO ischeduledetails(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees,statuses,types)
+VALUES (3,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',3,'1','2','3');
+INSERT INTO ischeduledetails(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees,statuses,types)
+VALUES (4,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',5,'1','2','3');
+INSERT INTO ischeduledetails(id,title,description,timestart,timeend,location,type,status,datecreated,dateupdated,creator,creatorid,attendees,statuses,types)
+VALUES (5,'Spring Book','Rod',parsedatetime('17-09-2012', 'dd-MM-yyyy'), parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Novosibirsk','type','status',parsedatetime('17-09-2012', 'dd-MM-yyyy'),parsedatetime('17-09-2012', 'dd-MM-yyyy'),'Pylypiv',4,'1','2','3');
