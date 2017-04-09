@@ -26,8 +26,6 @@ declare let componentHandler: any;
 })
 export class HomeComponent {
 
-    constructor() {
-
-    }
+    constructor() {    }
 
 }

@@ -30,12 +30,15 @@ import { UserCardComponent } from './users/user-card.component';
 import { UserListComponent } from './users/user-list.component';
 import { RightMenuComponent } from './main/sadebar/right_menu.component';
 import { RightMenuPanelComponent } from './main/sadebar/right_menu.panel.component';
+import { TrackScrollDirective } from './shared/directives/trackscroll.directive';
+import { HeaderComponent } from './main/header/header.component';
 
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
 import { ItemsService } from './shared/utils/items.service';
 import { MappingService } from './shared/utils/mapping.service';
 import { NotificationService } from './shared/utils/notification.service';
+
 
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -100,7 +103,9 @@ import { AppRoutingModule }     from './app-routing.module';
     HeroesComponent,
     WebsocketComponent,
     RightMenuPanelComponent,
-    RightMenuComponent
+    RightMenuComponent,
+    TrackScrollDirective,
+    HeaderComponent
   ],
   // for exclude the 404 error
   providers: [
