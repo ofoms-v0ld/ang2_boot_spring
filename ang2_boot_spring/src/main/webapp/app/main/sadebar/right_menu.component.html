@@ -3,4 +3,4 @@
 </button> -->
 <a (click)="toggleMenu();testt.toggleItem()" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
 
-<side-bar-menu [@slInOut]="menuState" #testt></side-bar-menu>
+<side-bar-menu [@slInOut]="menuState" #testt  (onVoted)="onVoted($event)"></side-bar-menu>

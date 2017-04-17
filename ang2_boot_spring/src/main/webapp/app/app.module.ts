@@ -27,7 +27,7 @@ import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
 import { ScheduleEditComponent } from './schedules/schedule-edit.component';
 import { ScheduleListComponent } from './schedules/schedule-list.component';
 import { UserCardComponent } from './users/user-card.component';
-import { UserListComponent } from './users/user-list.component';
+//import { UserListComponent } from './users/user-list.component';
 import { RightMenuComponent } from './main/sadebar/right_menu.component';
 import { RightMenuPanelComponent } from './main/sadebar/right_menu.panel.component';
 import { TrackScrollDirective } from './shared/directives/trackscroll.directive';
@@ -96,7 +96,7 @@ import { AppRoutingModule }     from './app-routing.module';
     ScheduleListComponent,
     SlimLoadingBarComponent,
     UserCardComponent,
-    UserListComponent,
+    //UserListComponent,
     DashboardComponent,
     HeroDetailComponent,
     MycontactComponent,

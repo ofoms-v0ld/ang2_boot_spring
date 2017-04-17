@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { OtherComponent }    from '../components/other.component';
+import { AgularTasksComponent }    from '../components/angular.tasks.component';
 import { BooksSuboneComponent }  from '../components/books/books.subone.component';
 import { BooksSubthreeComponent }  from '../components/books/books.subthree.component';
 
@@ -13,7 +13,7 @@ import { AppAnimateHeaderComponent }  from '../components/animate_header/app.ani
 const cRoutes: Routes = [
   
   { path: '', redirectTo: 'other', pathMatch: 'full'},
-  { path: 'other',    component: OtherComponent },
+  { path: 'other',    component: AgularTasksComponent },
   { path: 'other/right_menu', component: RightMenuComponent },
   { path: 'other/animate-header', component: AppAnimateHeaderComponent },
   { path: 'other/books_http', component: BooksSuboneComponent },

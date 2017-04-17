@@ -3,8 +3,8 @@ import { TrackScrollDirective } from './directives/trackscroll.directive';
 
 @Component({
     selector:'other-header',
-    templateUrl: 'app/other/components/animate_header/header.component.html',
-    styleUrls: ['app/other/components/animate_header/header.component.css'],
+    templateUrl: 'app/other/angular_tasks/components/animate_header/header.component.html',
+    styleUrls: ['app/other/angular_tasks/components/animate_header/header.component.css'],
     directives: [TrackScrollDirective]
 })
 export class HeaderComponent{

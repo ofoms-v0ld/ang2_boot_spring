@@ -62,7 +62,7 @@ import { BooksService } from '../../services/books.service';
 		    </div>
 	    </div>
     	`,
-  	  	styleUrls: ['./app/other/components/css/books.subone.component.css'],
+  	  	styleUrls: ['./app/other/angular_tasks/components/css/books.subone.component.css'],
   	  	providers: [BooksService]
 })
 

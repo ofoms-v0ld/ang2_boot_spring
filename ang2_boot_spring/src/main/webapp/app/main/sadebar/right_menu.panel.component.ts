@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate,EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'side-bar-menu',
@@ -25,6 +25,7 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 export class RightMenuPanelComponent implements OnInit {
 
   itemState:string = 'out';
+  @Output() onVoted = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {}
@@ -32,6 +33,12 @@ export class RightMenuPanelComponent implements OnInit {
   toggleItem() {
     // 1-line if statement that toggles the value:
     this.itemState = this.itemState === 'out' ? 'in' : 'out';
+  }
+  
+  vote(agreed: boolean) {
+    this.onVoted.emit(agreed);
+    this.toggleItem();
+   // this.voted = true;
   }
   
   

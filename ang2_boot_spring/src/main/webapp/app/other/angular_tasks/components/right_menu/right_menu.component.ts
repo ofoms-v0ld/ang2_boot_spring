@@ -2,8 +2,8 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
 
 @Component({
   selector: 'other-block',
-  templateUrl: 'app/other/components/right_menu/right_menu.component.html',
-  styleUrls: ['app/other/components/right_menu/right_menu.component.css'],
+  templateUrl: 'app/other/angular_tasks/components/right_menu/right_menu.component.html',
+  styleUrls: ['app/other/angular_tasks/components/right_menu/right_menu.component.css'],
   animations: [
     trigger('slideInOut', [
       state('in', style({

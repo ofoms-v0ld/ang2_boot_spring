@@ -6,7 +6,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 /*components*/
-import { OtherComponent }    from '../components/other.component';
+import { AgularTasksComponent }    from '../components/angular.tasks.component';
 import { BooksSuboneComponent }  from '../components/books/books.subone.component';
 import { BooksSubtwoComponent }  from '../components/books/books.subtwo.component';
 import { BooksSubthreeComponent }  from '../components/books/books.subthree.component';
@@ -27,10 +27,10 @@ import { OtherRoutingModule } from '../route/other.routing.module';
 
 @NgModule({
   imports: [OtherRoutingModule,CommonModule,FormsModule,HttpModule],
-  declarations: [OtherComponent,BooksSuboneComponent,BooksSubtwoComponent,BooksSubthreeComponent,RightMenuComponent,
+  declarations: [AgularTasksComponent,BooksSuboneComponent,BooksSubtwoComponent,BooksSubthreeComponent,RightMenuComponent,
   RightMenuPanelComponent,
   AppAnimateHeaderComponent,
   HeaderComponent,
   TrackScrollDirective]
 })
-export class OtherModule {}
+export class AngularTasksModule {}
