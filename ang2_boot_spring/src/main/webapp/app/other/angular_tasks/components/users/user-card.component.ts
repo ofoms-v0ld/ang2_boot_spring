@@ -5,12 +5,12 @@ import { Component, Input, Output, OnInit, ViewContainerRef, EventEmitter, ViewC
     animate,
     transition  } from '@angular/core';
 
-import { IUser, ISchedule } from '../shared/interfaces';
-import { DataService } from '../shared/services/data.service';
-import { ItemsService } from '../shared/utils/items.service';
-import { NotificationService } from '../shared/utils/notification.service';
-import { ConfigService } from '../shared/utils/config.service';
-import { HighlightDirective } from '../shared/directives/highlight.directive';
+import { IUser, ISchedule } from '../../../../shared/interfaces';
+import { DataService } from '../../../../shared/services/data.service';
+import { ItemsService } from '../../../../shared/utils/items.service';
+import { NotificationService } from '../../../../shared/utils/notification.service';
+import { ConfigService } from '../../../../shared/utils/config.service';
+import { HighlightDirective } from '../../../../shared/directives/highlight.directive';
 
 import { ModalDirective } from 'ng2-bootstrap';
 
@@ -37,7 +37,8 @@ import { ModalDirective } from 'ng2-bootstrap';
         ])
     ]
 })
-export class UserCardComponent implements OnInit {
+export class UsersCardAgularTasksComponent implements OnInit {
+
     @ViewChild('childModal') public childModal: ModalDirective;
     @Input() user: IUser;
     @Output() removeUser = new EventEmitter();

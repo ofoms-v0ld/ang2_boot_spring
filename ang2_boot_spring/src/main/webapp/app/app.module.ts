@@ -11,23 +11,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
-import { PaginationModule } from 'ng2-bootstrap';
-import { DatepickerModule } from 'ng2-bootstrap';
-//import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { ModalModule } from 'ng2-bootstrap';
 import { ProgressbarModule } from 'ng2-bootstrap';
 import { SlimLoadingBarService, SlimLoadingBarComponent } from 'ng2-slim-loading-bar';
-import { TimepickerModule } from 'ng2-bootstrap';
+
+import { ModalModule } from 'ng2-bootstrap';
 
 import { AppComponent }   from './app.component';
-import { DateFormatPipe } from './shared/pipes/date-format.pipe';
+
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { HomeComponent } from './home/home.component';
 import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
-import { ScheduleEditComponent } from './schedules/schedule-edit.component';
-import { ScheduleListComponent } from './schedules/schedule-list.component';
-import { UserCardComponent } from './users/user-card.component';
-//import { UserListComponent } from './users/user-list.component';
 import { RightMenuComponent } from './main/sadebar/right_menu.component';
 import { RightMenuPanelComponent } from './main/sadebar/right_menu.panel.component';
 import { TrackScrollDirective } from './shared/directives/trackscroll.directive';
@@ -61,6 +54,8 @@ import { HeroService }          from './hero.service';
 // comment and use lazy-load module	
 //import { RoutingModule }      from './routing/routing.module';
 import { CryptoProModule }      from './crypto_pro/crypto_pro.module';
+//import { SharedModule }      from './shared/module/shared.module';
+
 
 	/*rout module*/
 import { AppRoutingModule }     from './app-routing.module';
@@ -75,28 +70,17 @@ import { AppRoutingModule }     from './app-routing.module';
     AppRoutingModule,
     CryptoProModule,
     AlertModule.forRoot(),
-    DatepickerModule.forRoot(),
     HttpModule,
     ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
-    PaginationModule.forRoot(),
-    TimepickerModule.forRoot(),
-//  ,RoutingModule
-
-        
-
+    //SharedModule
   ],
   declarations: [
   	AppComponent,
-    DateFormatPipe,
     HighlightDirective,
     HomeComponent,
     MobileHideDirective,
-    ScheduleEditComponent,
-    ScheduleListComponent,
     SlimLoadingBarComponent,
-    UserCardComponent,
-    //UserListComponent,
     DashboardComponent,
     HeroDetailComponent,
     MycontactComponent,

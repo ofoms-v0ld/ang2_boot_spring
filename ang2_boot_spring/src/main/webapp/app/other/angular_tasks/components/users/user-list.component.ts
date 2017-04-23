@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../shared/services/data.service';
-import { ItemsService } from '../shared/utils/items.service';
-import { NotificationService } from '../shared/utils/notification.service';
-import { IUser } from '../shared/interfaces';
-import { UserCardComponent } from './user-card.component';
+import { DataService } from '../../../../shared/services/data.service';
+import { ItemsService } from '../../../../shared/utils/items.service';
+import { NotificationService } from '../../../../shared/utils/notification.service';
+import { IUser } from '../../../../shared/interfaces';
+import { UsersCardAgularTasksComponent } from './user-card.component';
 
 @Component({
     moduleId: module.id,
     selector: 'users',
     templateUrl: 'user-list.component.html'
 })
-export class UserListComponent implements OnInit {
+
+export class UsersAgularTasksComponent implements OnInit {
 
     users: IUser[];
     addingUser: boolean = false;

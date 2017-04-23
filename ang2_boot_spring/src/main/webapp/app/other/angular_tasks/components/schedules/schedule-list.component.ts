@@ -8,12 +8,12 @@ import { Component, OnInit, ViewChild, Input, Output,
 import { ModalDirective } from 'ng2-bootstrap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
-import { DataService } from '../shared/services/data.service';
-import { DateFormatPipe } from '../shared/pipes/date-format.pipe';
-import { ItemsService } from '../shared/utils/items.service';
-import { NotificationService } from '../shared/utils/notification.service';
-import { ConfigService } from '../shared/utils/config.service';
-import { ISchedule, IScheduleDetails, Pagination, PaginatedResult } from '../shared/interfaces';
+import { DataService } from '../../../../shared/services/data.service';
+import { DateFormatPipe } from '../../../../shared/pipes/date-format.pipe';
+import { ItemsService } from '../../../../shared/utils/items.service';
+import { NotificationService } from '../../../../shared/utils/notification.service';
+import { ConfigService } from '../../../../shared/utils/config.service';
+import { ISchedule, IScheduleDetails, Pagination, PaginatedResult } from '../../../../shared/interfaces';
 
 @Component({
     moduleId: module.id,
@@ -76,7 +76,7 @@ export class ScheduleListComponent implements OnInit {
 
     loadSchedules() {
         this.loadingBarService.start();
-		alert('ds '+this.currentPage +' - '+this.itemsPerPage);
+		
         this.dataService.getSchedules(this.currentPage, this.itemsPerPage)
             .subscribe((res: PaginatedResult<ISchedule[]>) => {
                 this.schedules = res.result;// schedules;

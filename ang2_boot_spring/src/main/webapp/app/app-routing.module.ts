@@ -7,14 +7,12 @@ import { HeroDetailComponent }  from './hero-detail.component';
 import { MycontactComponent }      from './mycontact/mycontact.component';
 import { WebsocketComponent }      from './websocket_app/websocket.component';
 import { HomeComponent } from './home/home.component';
-//import { UserListComponent } from './users/user-list.component';
-import { ScheduleListComponent } from './schedules/schedule-list.component';
+//import { ScheduleListComponent } from './schedules/schedule-list.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '', component: HomeComponent },
-  //{ path: 'users', component: UserListComponent },
-  { path: 'schedules', component: ScheduleListComponent },
+//  { path: 'schedules', component: ScheduleListComponent },
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'mycontact', component: MycontactComponent },

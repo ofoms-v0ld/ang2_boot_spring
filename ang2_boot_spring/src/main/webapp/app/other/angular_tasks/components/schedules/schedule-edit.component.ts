@@ -4,12 +4,12 @@ import { NgForm } from '@angular/forms';
 
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
-import { DataService } from '../shared/services/data.service';
-import { ItemsService } from '../shared/utils/items.service';
-import { NotificationService } from '../shared/utils/notification.service';
-import { ConfigService } from '../shared/utils/config.service';
-import { MappingService } from '../shared/utils/mapping.service';
-import { ISchedule, IScheduleDetails, IUser } from '../shared/interfaces';
+import { DataService } from '../../../../shared/services/data.service';
+import { ItemsService } from '../../../../shared/utils/items.service';
+import { NotificationService } from '../../../../shared/utils/notification.service';
+import { ConfigService } from '../../../../shared/utils/config.service';
+import { MappingService } from '../../../../shared/utils/mapping.service';
+import { ISchedule, IScheduleDetails, IUser } from '../../../../shared/interfaces';
 import { DateFormatPipe } from '../shared/pipes/date-format.pipe';
 
 @Component({
