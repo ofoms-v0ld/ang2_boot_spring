@@ -1,4 +1,4 @@
-<ul [@myeffect]="itemState">
+<!-- <ul [@myeffect]="itemState">
 <li>
    <a (click)="vote(true)"  [routerLink]="['/menu_angular']">Angular</a>
 </li>
@@ -7,4 +7,47 @@
   <li>Menu Item</li>
   <li>Menu Item</li>
   <li>Usful links</li>
-</ul>
+</ul> -->
+
+
+ 
+ <div [@myeffect]="itemState" id="jquery-accordion-menu" class="jquery-accordion-menu black">
+ <div class="jquery-accordion-menu-header" id="form"></div>
+ <ul id="demo-list">
+<li><a href="#"><i class="fa fa-user"></i>About </a></li>
+ 
+ <li  (click)="toggleSubItemt($event)"><a>
+ <i class="fa fa-cog"></i>
+ Tutorial</a>
+ <ul class="submenu anim" style="display: block;">
+ <li><a href="#" [routerLink]="['/menu_angular']">Angular 2 </a></li>
+ <li><a href="#">OOP paterns</a></li>
+ <li><a href="#">Links</a></li>
+ <li><a href="#">Rubrik</a>
+ <ul class="submenu">
+ <li><a href="#">Rubrik </a></li>
+ <li><a href="#">Rubrik </a></li>
+ <li><a href="#">Rubrik </a></li>
+ <li><a href="#">Rubrik </a></li>
+ </ul>
+ </li>
+ <li><a href="#">Consulting </a></li>
+ </ul>
+ </li>
+ <li><a href="#"><i class="fa fa-home"></i>System </a></li>
+ <li (click)="toggleSubItemt($event)"><a href="#" ><i class="fa fa-suitcase"></i>Portfolio </a>
+ <ul  class="submenu anim"  style="display: block;" >
+ <li><a href="#">Web Design </a></li>
+ <li><a href="#">Graphics </a>
+ <span class="jquery-accordion-menu-label">10 </span>
+ </li>
+ <li><a href="#">Photoshop </a></li>
+ <li><a href="#">Programming </a></li>
+ </ul>
+ </li>
+ <li><a href="#"><i class="fa fa-envelope"></i>Contact </a></li>
+ </ul>
+ <!-- <div class="jquery-accordion-menu-footer">
+ Footer
+ </div> -->
+ </div>

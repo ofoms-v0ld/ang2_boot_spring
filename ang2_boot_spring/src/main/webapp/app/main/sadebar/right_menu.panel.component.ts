@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate,EventEmitter, Input, Output } from '@angular/core';
+import { Component,ViewChild, OnInit, trigger, state, style, transition, animate,EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'side-bar-menu',
@@ -35,9 +35,16 @@ export class RightMenuPanelComponent implements OnInit {
     this.itemState = this.itemState === 'out' ? 'in' : 'out';
   }
   
+  
+  
+  toggleSubItemt(event){
+  var rty = event.currentTarget.children[1];
+  rty.className = rty.className === 'submenu anim' ? 'submenu anim showl' : 'submenu anim';
+  }
+  
   vote(agreed: boolean) {
     this.onVoted.emit(agreed);
-    this.toggleItem();
+    setTimeout(this.toggleItem(),3000);
    // this.voted = true;
   }
   
